@@ -1,0 +1,1833 @@
+@import '98.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.os-shell {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: #008080;
+  overflow: hidden;
+}
+
+.desktop {
+  position: absolute;
+  inset: 0;
+  bottom: 36px;
+  overflow: hidden;
+}
+
+.desktop-icon {
+  position: absolute;
+  width: 80px;
+  background: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.desktop-icon-glyph {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pixel-icon {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.title-bar-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+  margin-top: -2px;
+}
+
+.desktop-icon span {
+  width: 100%;
+  text-align: center;
+}
+
+.app-window {
+  position: absolute;
+  width: 360px;
+}
+
+.app-window .title-bar {
+  cursor: grab;
+  user-select: none;
+}
+
+.note-widget .title-bar,
+.timer-widget .title-bar {
+  user-select: none;
+}
+
+.taskbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36px;
+  background: silver;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 8px;
+}
+
+.start-button {
+  font-weight: bold;
+}
+
+.taskbar-clock {
+  margin-left: auto;
+  border: 1px inset #fff;
+  padding: 2px 8px;
+  background: silver;
+}
+
+.start-button.active {
+  border-style: inset;
+}
+
+.taskbar-items {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.taskbar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  max-width: 160px;
+  padding: 2px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar-item span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskbar-item.active {
+  border-style: inset;
+}
+
+.context-menu {
+  position: fixed;
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+  padding: 2px;
+  font-size: 12px;
+  z-index: 2100;
+}
+
+.context-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 4px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.context-menu-item:hover {
+  background: #000080;
+  color: white;
+}
+
+.start-menu {
+  position: absolute;
+  left: 4px;
+  bottom: 40px;
+  width: 460px;
+  background: #ece9d8;
+  border: 1px solid #0a246a;
+  border-radius: 6px 6px 0 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  font-family: Tahoma, Arial, sans-serif;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-menu-header {
+  background: linear-gradient(90deg, #1349a5 0%, #0a3a93 50%, #07287a 100%);
+  color: white;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.start-menu-header-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.start-menu-header-title {
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.start-menu-header-version {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 1px;
+}
+
+.start-menu-body {
+  display: flex;
+  min-height: 220px;
+}
+
+/* ── Lado esquerdo ── */
+.start-menu-left {
+  flex: 1;
+  background: white;
+  border-right: 1px solid #aaa;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+
+.start-menu-item:hover {
+  background: #2f7cdb;
+  color: white;
+}
+
+.start-menu-empty {
+  padding: 12px;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ── Lado direito ── */
+.start-menu-right {
+  width: 190px;
+  background: linear-gradient(180deg, #1b5ec4 0%, #0e3fa0 60%, #0a3a93 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 6px;
+}
+
+.start-menu-right-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+/* primeiro item não tem linha em cima */
+.start-menu-right-item:first-child {
+  border-top: none;
+}
+
+/* itens que são botões: reset completo do 98.css */
+.start-menu-right-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  text-align: left;
+  cursor: pointer;
+}
+
+.start-menu-right-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.start-menu-right-btn:focus {
+  outline: none;
+}
+
+.start-menu-right-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  width: 22px;
+  text-align: center;
+}
+
+.start-menu-right-name {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.icon-option {
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+.icon-option.selected {
+  border-style: inset;
+  background: #d6d2c2;
+}
+
+.color-swatch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-swatch.selected {
+  outline: 3px solid white;
+  outline-offset: -3px;
+  border-style: inset;
+}
+
+.wallpaper-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.wallpaper-preview {
+  width: 64px;
+  height: 40px;
+  object-fit: cover;
+  border: 1px solid #666;
+}
+
+.note-widget {
+  position: absolute;
+  right: 16px;
+  bottom: calc(36px + 16px);
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.note-textarea {
+  flex: 1;
+  border: none;
+  resize: none;
+  padding: 8px;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+  line-height: 1.5;
+  background: white;
+  color: #222;
+}
+
+.note-window-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.note-window-textarea {
+  display: block;
+  width: 100%;
+  flex: 1;
+  border: none;
+  resize: none;
+  padding: 10px 12px;
+  font-family: inherit;
+  outline: none;
+  line-height: 1.6;
+  background: white;
+  color: #222;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.note-font-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-top: 1px solid #ccc;
+  background: silver;
+  flex-shrink: 0;
+}
+
+.note-font-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  padding: 2px 6px;
+  font-family: inherit;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 0;
+  line-height: 1;
+}
+
+.note-font-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.note-font-label {
+  font-size: 10px;
+  color: #555;
+  margin-left: 4px;
+}
+
+.task-content {
+  width: 100%;
+}
+
+.task-description {
+  width: 100%;
+  height: 64px;
+  resize: vertical;
+}
+
+.progress-indicator {
+  width: 100%;
+  height: 18px;
+}
+
+.checklist-items {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checklist-item label {
+  flex: 1;
+  word-break: break-word;
+}
+
+.checklist-done {
+  text-decoration: line-through;
+  color: #666;
+}
+
+.checklist-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 4px;
+  min-height: 0;
+  min-width: 0;
+}
+
+.checklist-remove:hover {
+  background: #cc0000;
+  color: white;
+}
+
+.checklist-add-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.checklist-add-row input {
+  flex: 1;
+}
+
+/* ── Resizable WindowFrame ───────────────────────────────────── */
+.resizable-window {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.resizable-window .window-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.resize-e {
+  position: absolute;
+  right: -3px;
+  top: 8px;
+  bottom: 8px;
+  width: 6px;
+  cursor: ew-resize;
+  z-index: 1;
+}
+
+.resize-s {
+  position: absolute;
+  bottom: -3px;
+  left: 8px;
+  right: 8px;
+  height: 6px;
+  cursor: ns-resize;
+  z-index: 1;
+}
+
+.resize-se {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  cursor: nwse-resize;
+  z-index: 2;
+}
+
+/* ── TimerWidget ─────────────────────────────────────────────── */
+.timer-widget {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timer-controls button {
+  font-size: 11px;
+}
+
+.timer-minutes-input {
+  width: 50px;
+}
+
+.timer-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timer-time-display {
+  font-size: 11px;
+  text-align: center;
+}
+
+.timer-section-label {
+  font-size: 10px;
+  font-weight: bold;
+  color: #555;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+
+.timer-task-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.timer-attached-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.timer-detach {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 1px 3px;
+  min-height: 0;
+  min-width: 0;
+  color: #666;
+}
+
+.timer-detach:hover {
+  color: #cc0000;
+}
+
+.timer-no-task {
+  font-size: 10px;
+  color: #666;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.timer-checklist-section {
+  display: flex;
+  flex-direction: column;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.timer-checklist-section .checklist-items {
+  max-height: none;
+}
+
+.timer-no-checklist {
+  font-size: 10px;
+  color: #666;
+  margin: 0;
+}
+
+/* ── UpcomingWidget ──────────────────────────────────────────── */
+.upcoming-widget {
+  position: absolute;
+  right: 16px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  transition: top 0.2s ease;
+}
+
+.upcoming-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 !important;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.upcoming-day {
+  padding: 6px 8px;
+  border-bottom: 1px solid #c8c8c8;
+}
+
+.upcoming-day:last-child {
+  border-bottom: none;
+}
+
+.upcoming-day-today {
+  background: #f0f4ff;
+}
+
+.upcoming-day-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.upcoming-day-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000080;
+  min-width: 0;
+}
+
+.upcoming-day-date {
+  font-size: 10px;
+  color: #555;
+}
+
+.upcoming-day-weekend {
+  color: #cc0000;
+}
+
+.upcoming-empty {
+  font-size: 10px;
+  color: #999;
+  font-style: italic;
+  padding-left: 2px;
+}
+
+.upcoming-task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.upcoming-task-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.upcoming-task-glyph {
+  font-size: 13px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.upcoming-task-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.upcoming-weekly-dot {
+  font-size: 10px;
+  color: #4455cc;
+  flex-shrink: 0;
+}
+
+/* ── CalendarWindow ──────────────────────────────────────────── */
+.calendar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.calendar-nav button {
+  min-width: 26px;
+  padding: 2px 6px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.calendar-title {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.calendar-today-btn {
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+/* Grid de dias: flex coluna, ocupa todo o espaço restante */
+.calendar-days-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid #aaa;
+}
+
+.calendar-weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex-shrink: 0;
+  background: #f0f0f0;
+  border-bottom: 1px solid #aaa;
+}
+
+.calendar-weekday-header {
+  text-align: center;
+  padding: 5px 2px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #444;
+  cursor: context-menu;
+  user-select: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.calendar-weekday-header:hover {
+  background: #e0e0e0;
+}
+
+.calendar-weekday-has-weekly {
+  background: #eef3ff;
+}
+
+.calendar-weekday-has-weekly:hover {
+  background: #dde8ff;
+}
+
+.calendar-weekday-weekly-dot {
+  font-size: 9px;
+  color: #4455cc;
+  line-height: 1;
+}
+
+.calendar-sunday-header {
+  color: #cc0000;
+}
+
+.calendar-sunday-header .calendar-weekday-weekly-dot {
+  color: #cc5500;
+}
+
+/* Corpo do calendário: flex coluna, distribui semanas igualmente */
+.calendar-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.calendar-week-row {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #ddd;
+  min-height: 0;
+}
+
+.calendar-week-row:last-child {
+  border-bottom: none;
+}
+
+.calendar-cell {
+  border-right: 1px solid #ddd;
+  padding: 4px 4px;
+  overflow: hidden;
+  cursor: default;
+  vertical-align: top;
+}
+
+.calendar-cell:last-child {
+  border-right: none;
+}
+
+.calendar-cell-empty {
+  background: #f8f8f8;
+}
+
+.calendar-cell:not(.calendar-cell-empty):hover {
+  background: #eef3ff;
+}
+
+.calendar-today:hover {
+  background: #e8eeff;
+}
+
+.calendar-day-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.calendar-today .calendar-day-num {
+  background: #000080;
+  color: white;
+  font-weight: bold;
+}
+
+.calendar-sunday-day .calendar-day-num {
+  color: #cc0000;
+}
+
+.calendar-today.calendar-sunday-day .calendar-day-num {
+  color: white;
+}
+
+.calendar-task-badge {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #000080;
+  color: white;
+  border-radius: 2px;
+  padding: 1px 2px 1px 4px;
+  margin-top: 2px;
+  font-size: 10px;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+.calendar-task-badge-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.calendar-task-remove {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 12px;
+  line-height: 1;
+  min-width: 0;
+  min-height: 0;
+  flex-shrink: 0;
+}
+
+.calendar-task-remove:hover {
+  color: #ffbbbb;
+  background: transparent;
+}
+
+.calendar-task-badge-weekly {
+  background: #2255aa;
+  border-left: 2px solid #88aaff;
+}
+
+.calendar-badge-weekly-icon {
+  font-size: 9px;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.calendar-task-more {
+  font-size: 10px;
+  color: #555;
+  font-weight: bold;
+  margin-top: 3px;
+  padding: 0 2px;
+}
+
+/* ── Visão de dia ────────────────────────────────────────────── */
+.calendar-day-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+.calendar-day-view-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #aaa;
+}
+
+.calendar-day-view-title {
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-day-view-today-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #000080;
+  color: white;
+  font-size: 10px;
+  font-weight: normal;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.calendar-day-view-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.calendar-day-view-empty {
+  color: #888;
+  font-size: 12px;
+  padding: 24px 0;
+  margin: 0;
+  text-align: center;
+}
+
+.calendar-day-task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-day-task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 13px;
+}
+
+.calendar-day-task-row:last-child {
+  border-bottom: none;
+}
+
+.calendar-day-task-row:hover {
+  background: #eef3ff;
+  cursor: pointer;
+}
+
+.calendar-day-task-glyph {
+  font-size: 20px;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.calendar-day-task-name {
+  flex: 1;
+}
+
+.calendar-day-task-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #aaa;
+  padding: 2px 6px;
+  min-height: 0;
+  min-width: 0;
+  line-height: 1;
+}
+
+.calendar-day-task-remove:hover {
+  color: #cc0000;
+  background: transparent;
+}
+
+.calendar-weekly-badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 10px;
+  color: #4455cc;
+  background: #eef3ff;
+  border: 1px solid #aabbee;
+  border-radius: 3px;
+  padding: 0 4px;
+  vertical-align: middle;
+}
+
+.calendar-day-view-footer {
+  flex-shrink: 0;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid #aaa;
+  display: flex;
+  gap: 6px;
+}
+
+/* ── TaskPickerDialog ────────────────────────────────────────── */
+.task-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.task-picker-address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.task-picker-address label {
+  white-space: nowrap;
+}
+
+.task-picker-address-bar {
+  flex: 1;
+  border: 2px inset silver;
+  background: white;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.task-picker-panel {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  border: 2px inset silver;
+  background: white;
+}
+
+.task-picker-list {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+}
+
+.task-picker-item:hover,
+.task-picker-item.selected {
+  background: #000080;
+  color: white;
+}
+
+.task-picker-glyph {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.task-picker-empty {
+  font-size: 12px;
+  color: #888;
+  padding: 16px;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── FolderWindow / Kanban ───────────────────────────────────── */
+.folder-kanban {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  height: 100%;
+  padding-bottom: 4px;
+}
+
+.kanban-column {
+  flex: 0 0 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #e8e8e8;
+  border: 1px solid #aaa;
+  padding: 8px;
+}
+
+.kanban-column-dragover {
+  background: #d0d8f0;
+  border-color: #000080;
+  border-style: dashed;
+}
+
+.kanban-col-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #bbb;
+  flex-shrink: 0;
+}
+
+.kanban-col-name {
+  flex: 1;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: default;
+  word-break: break-word;
+}
+
+.kanban-col-name-input {
+  flex: 1;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0 2px;
+  min-width: 0;
+}
+
+.kanban-col-delete {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #999;
+  padding: 0 3px;
+  min-height: 0;
+  min-width: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.kanban-col-delete:hover {
+  color: #cc0000;
+  background: transparent;
+}
+
+.kanban-col-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+
+.kanban-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 6px 6px;
+  cursor: grab;
+  font-size: 12px;
+  user-select: none;
+}
+
+.kanban-card:hover {
+  border-color: #000080;
+  background: #f0f4ff;
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.kanban-card-glyph {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.kanban-card-name {
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.kanban-card-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #bbb;
+  padding: 0 2px;
+  min-height: 0;
+  min-width: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.kanban-card-remove:hover {
+  color: #cc0000;
+  background: transparent;
+}
+
+.kanban-add-task {
+  font-size: 11px;
+  color: #666;
+  background: transparent;
+  border: 1px dashed #bbb;
+  padding: 5px 4px;
+  cursor: pointer;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.kanban-add-task:hover {
+  background: #d8d8d8;
+  border-style: solid;
+  color: #333;
+}
+
+.kanban-add-col-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.kanban-add-col {
+  width: 160px;
+  padding: 8px 12px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px dashed #999;
+  cursor: pointer;
+  text-align: center;
+  color: #555;
+}
+
+.kanban-add-col:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-style: solid;
+  color: #222;
+}
+
+/* ── GuideWindow ─────────────────────────────────────────────── */
+.guide-layout {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.guide-sidebar {
+  width: 158px;
+  flex-shrink: 0;
+  background: #dde4f0;
+  border-right: 2px solid #aaa;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.guide-sidebar-title {
+  font-weight: bold;
+  font-size: 10px;
+  color: #000080;
+  padding: 8px 10px 6px;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #bbb;
+  background: #c8d4ec;
+}
+
+.guide-sidebar-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 128, 0.1);
+  padding: 7px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #00008b;
+  line-height: 1.3;
+}
+
+.guide-sidebar-link:hover {
+  background: #b8caee;
+  color: #000060;
+}
+
+.guide-sidebar-footer {
+  margin-top: auto;
+  padding: 8px 10px;
+  font-size: 9px;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #bbb;
+}
+
+.guide-content {
+  flex: 1;
+  overflow-y: auto;
+  min-width: 0;
+  background: white;
+}
+
+.guide-section + .guide-section {
+  border-top: 3px groove silver;
+}
+
+.guide-section-header {
+  background: linear-gradient(90deg, #000080 0%, #0000cc 100%);
+  color: white;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+  border-bottom: 2px solid #ffcc00;
+  letter-spacing: 0.3px;
+}
+
+.guide-section-body {
+  padding: 10px 14px 14px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: #222;
+}
+
+.guide-section-body p {
+  margin: 0 0 8px;
+}
+
+.guide-tip {
+  background: #fffde6;
+  border-left: 4px solid #f0a800;
+  padding: 6px 10px;
+  margin: 8px 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.guide-note {
+  background: #eef3ff;
+  border-left: 4px solid #0000cc;
+  padding: 6px 10px;
+  margin: 8px 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.guide-list {
+  margin: 6px 0 10px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.guide-list li {
+  padding-left: 16px;
+  position: relative;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.guide-list li::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  color: #000080;
+  font-size: 7px;
+  top: 5px;
+}
+
+/* ── SpendingWidget ──────────────────────────────────────────── */
+.spending-widget {
+  position: absolute;
+  right: 16px;
+  bottom: 52px;
+  width: 240px;
+  z-index: 500;
+}
+
+.spending-widget .title-bar {
+  user-select: none;
+}
+
+.spending-body {
+  padding: 6px 8px;
+}
+
+.spending-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.spending-label {
+  font-size: 11px;
+  color: #333;
+}
+
+.spending-value {
+  font-weight: bold;
+  font-size: 12px;
+  color: #003080;
+}
+
+.spending-value-month {
+  color: #a05000;
+}
+
+.spending-divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 2px 0;
+}
+
+.spending-month-hint {
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+  padding-top: 2px;
+}
+
+/* ── Despesas no calendário ──────────────────────────────────── */
+.calendar-task-badge-expense {
+  background: #7a4500;
+  border-color: #5a3000;
+}
+
+.calendar-task-badge-expense .calendar-task-badge-text {
+  color: #fff6e0;
+}
+
+.calendar-task-badge-expense .calendar-task-remove {
+  color: #ffcc88;
+}
+
+.calendar-task-badge-monthly-expense {
+  background: #5a006a;
+  border-left: 2px solid #cc66ff;
+}
+
+.calendar-task-badge-monthly-expense .calendar-task-badge-text {
+  color: #f0d0ff;
+}
+
+.calendar-task-badge-monthly-expense .calendar-task-remove {
+  color: #cc99ee;
+}
+
+.calendar-monthly-badge {
+  color: #5a006a;
+  background: #f5e0ff;
+  border-color: #cc99ee;
+}
+
+.calendar-day-section-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 0 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-expense-section-label {
+  color: #7a4500;
+}
+
+.calendar-day-expense-total {
+  font-size: 11px;
+  font-weight: bold;
+  color: #7a4500;
+}
+
+.calendar-expense-row {
+  background: #fff6e0;
+}
+
+.calendar-expense-row:hover {
+  background: #ffe4b0;
+}
+
+.calendar-expense-glyph {
+  font-size: 16px;
+}
+
+.calendar-expense-value-inline {
+  margin-left: 6px;
+  font-size: 10px;
+  color: #7a4500;
+  font-weight: bold;
+}
+
+
+/* ── ExpenseWindowContent ────────────────────────────────────── */
+.expense-window-body {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.expense-value-input {
+  width: 100%;
+  font-size: 13px;
+}
+
+.expense-total-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: #003080;
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* ── Meu Computador ─────────────────────────────────────────────────────── */
+
+.computer-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: silver;
+}
+
+/* Barra de pesquisa estilo toolbar Win98 */
+.computer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 8px;
+  border-bottom: 2px solid;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  flex-shrink: 0;
+}
+
+.computer-toolbar-label {
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.computer-search {
+  flex: 1;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-family: inherit;
+  border: 2px solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  background: white;
+  outline: none;
+}
+
+/* Área principal com borda inset */
+.computer-list-wrap {
+  flex: 1;
+  margin: 6px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  background: white;
+  overflow: hidden;
+}
+
+/* Cabeçalho de colunas */
+.computer-col-header {
+  display: flex;
+  align-items: center;
+  background: silver;
+  border-bottom: 2px solid;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  flex-shrink: 0;
+}
+
+.computer-col-icon-ph {
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.computer-col-name-h {
+  flex: 1;
+  font-size: 11px;
+  padding: 3px 0;
+  border-right: 1px solid #aaa;
+  padding-right: 8px;
+}
+
+.computer-col-type-h {
+  width: 72px;
+  font-size: 11px;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+
+/* Lista de itens */
+.computer-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.computer-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+}
+
+.computer-item:hover {
+  background: #000080;
+  color: white;
+}
+
+.computer-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.computer-item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 8px;
+  border-right: 1px solid #ddd;
+}
+
+.computer-item:hover .computer-item-label {
+  border-right-color: transparent;
+}
+
+.computer-item-type {
+  width: 72px;
+  font-size: 11px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  color: #555;
+}
+
+.computer-item:hover .computer-item-type {
+  color: #ddd;
+}
+
+.computer-empty {
+  padding: 12px 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+/* ── Protetor de tela ───────────────────────────────────────────────────── */
+
+.screensaver-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  cursor: none;
+  user-select: none;
+}
+
+.screensaver-text {
+  position: absolute;
+  font-size: 52px;
+  font-weight: bold;
+  font-family: 'Arial Black', Arial, sans-serif;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.screensaver-hint {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  color: #333;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+/* Barra de status Win98 */
+.computer-statusbar {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-top: 2px solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  background: silver;
+  color: #333;
+}
