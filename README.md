@@ -1,6 +1,6 @@
 # ChronoStadia
 
-> A self-contained productivity desktop built to look and feel like Windows 98.
+> Um desktop de produtividade independente com visual e comportamento de Windows 98.
 
 ![Electron](https://img.shields.io/badge/Electron-42-47848F?logo=electron&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
@@ -9,126 +9,126 @@
 
 ---
 
-## The Problem
+## O Problema
 
-Productivity tools are fragmented. A task manager here, a calendar there, sticky notes somewhere else, expense spreadsheets in another tab. Each app has its own account, its own sync, its own notification system. The mental overhead of switching between them adds up — and none of them feel like they belong together.
+Ferramentas de produtividade são fragmentadas. Gerenciador de tarefas aqui, calendário ali, notas em outro lugar, planilha de gastos em outra aba. Cada app tem sua própria conta, seu próprio sync, seu próprio sistema de notificações. O custo cognitivo de ficar alternando entre eles acumula — e nenhum deles parece que foi feito para funcionar junto.
 
-## The Solution
+## A Solução
 
-ChronoStadia is a single desktop app that behaves like a tiny operating system. You get a real desktop: drag program icons around, open multiple resizable windows, keep always-on widgets pinned to the corners. Everything — tasks, notes, folders, calendar, timer, expenses — lives in one place, offline, with no accounts required.
+ChronoStadia é um único app desktop que se comporta como um mini sistema operacional. Você tem uma área de trabalho real: arrasta ícones de programas, abre várias janelas redimensionáveis, mantém widgets sempre visíveis fixados nos cantos. Tudo — tarefas, notas, pastas, calendário, cronômetro, despesas — fica em um lugar só, offline, sem nenhuma conta necessária.
 
-The Win98 aesthetic is a deliberate choice, not just nostalgia. Its visual language is immediately understood by anyone who touched a computer in the last 30 years: icons you double-click, windows with title bars you drag, a Start menu, a taskbar. It removes all ambiguity about how the UI works, which frees up attention for the actual work.
-
----
-
-## What It Does
-
-### Desktop
-
-Drag-and-drop icons on a 96×96 grid. Right-click anywhere for a creation menu. Each icon type opens a different kind of window.
-
-### Tasks
-
-Create task icons with a description textarea and a checklist. Progress bar fills as items are checked off. Icons use pixel art from a built-in picker or emoji.
-
-### Notes
-
-Resizable note windows with a plain textarea. Font size adjustable per window (13 → 20 px). Content saved automatically.
-
-### Folders / Kanban
-
-Each folder icon opens a Kanban board with To Do / In Progress / Done columns. Drag task cards between columns. Columns are per-folder; the task itself stays on the desktop.
-
-### Calendar
-
-Monthly grid. Click a day to attach tasks (one-off) or right-click a weekday header to set weekly recurring tasks. Expenses work the same way — daily, weekly, or monthly recurring. Handles edge cases like scheduling a monthly recurring expense on day 31 for months that don't have it.
-
-### Pomodoro Timer
-
-Always-visible widget in the top-right corner. Set a duration, start the countdown, attach any task icon. The attached task's checklist appears directly in the timer for quick checking without opening a separate window.
-
-### Upcoming Days
-
-Widget showing today, tomorrow, and the day after — all scheduled tasks resolved from both one-off and recurring rules.
-
-### Expense Tracker
-
-Each expense is its own icon. A spending widget shows totals broken down by day, week, and month across all expenses.
-
-### My Computer
-
-A Windows Explorer–style list of every icon on the desktop. Searchable. Right-click items for the same context menu as the desktop (open, pin, properties, delete, reset position).
-
-### Screen Saver
-
-A DVD-style bouncing logo activated from the Start menu. Dismissed by any click.
+A estética do Win98 é uma escolha deliberada, não só nostalgia. A linguagem visual é imediatamente compreendida por qualquer pessoa que tocou num computador nos últimos 30 anos: ícones que você clica duas vezes, janelas com barra de título que você arrasta, menu Iniciar, barra de tarefas. Isso elimina qualquer ambiguidade sobre como a interface funciona, liberando atenção para o trabalho em si.
 
 ---
 
-## Architecture
+## O Que Faz
+
+### Área de Trabalho
+
+Ícones arrastáveis em uma grade de 96×96 px. Botão direito em qualquer lugar abre o menu de criação. Cada tipo de ícone abre um tipo diferente de janela.
+
+### Tarefas
+
+Crie ícones de tarefa com uma textarea de descrição e uma checklist. A barra de progresso preenche conforme os itens são marcados. Ícones usam pixel art de um seletor embutido ou emoji.
+
+### Notas
+
+Janelas de nota redimensionáveis com uma textarea simples. Tamanho de fonte ajustável por janela (13 → 20 px). Conteúdo salvo automaticamente.
+
+### Pastas / Kanban
+
+Cada ícone de pasta abre um board Kanban com colunas A Fazer / Em Andamento / Concluído. Arraste cards de tarefas entre colunas. As colunas são por pasta; a tarefa em si permanece na área de trabalho.
+
+### Calendário
+
+Grade mensal. Clique num dia para anexar tarefas pontuais, ou botão direito no cabeçalho de um dia da semana para definir tarefas recorrentes semanais. Despesas funcionam da mesma forma — diárias, semanais ou mensais. Trata casos como agendar uma despesa mensal recorrente no dia 31 em meses que não o têm.
+
+### Cronômetro Pomodoro
+
+Widget sempre visível no canto superior direito. Defina uma duração, inicie a contagem regressiva, anexe qualquer ícone de tarefa. A checklist da tarefa anexada aparece diretamente no cronômetro para marcação rápida sem abrir uma janela separada.
+
+### Dias Próximos
+
+Widget mostrando hoje, amanhã e depois de amanhã — todas as tarefas agendadas resolvidas a partir das regras pontuais e recorrentes.
+
+### Controle de Gastos
+
+Cada despesa é seu próprio ícone. Um widget de gastos mostra totais por dia, semana e mês em todas as despesas.
+
+### Meu Computador
+
+Lista estilo Windows Explorer de todos os ícones da área de trabalho. Com pesquisa. Botão direito nos itens abre o mesmo menu de contexto da área de trabalho (abrir, fixar, propriedades, excluir, reiniciar posição).
+
+### Protetor de Tela
+
+Logo quicando estilo DVD, ativado pelo menu Iniciar. Dispensado com qualquer clique.
+
+---
+
+## Arquitetura
 
 ```text
 Electron 42
 └─ BrowserWindow
-   ├─ preload  →  contextBridge exposes window.api (fullscreen toggle)
+   ├─ preload  →  contextBridge expõe window.api (alternar tela cheia)
    └─ renderer  →  React 19 + Vite 7
-        ├─ App.tsx              all global state, window routing, event handlers
-        ├─ Desktop.tsx          icon grid, icon context menus
-        ├─ WindowFrame.tsx      draggable + resizable shell (useDraggable hook)
-        ├─ Taskbar.tsx          open-window buttons + clock
-        ├─ StartMenu.tsx        pinned programs + system area
-        └─ components/          one file per feature window or widget
+        ├─ App.tsx              todo o estado global, roteamento de janelas, handlers
+        ├─ Desktop.tsx          grade de ícones, menus de contexto dos ícones
+        ├─ WindowFrame.tsx      shell arrastável + redimensionável (hook useDraggable)
+        ├─ Taskbar.tsx          botões de programas abertos + relógio
+        ├─ StartMenu.tsx        programas fixados + área do sistema
+        └─ components/          um arquivo por janela ou widget de funcionalidade
 ```
 
-**Storage:** `localStorage` only. No backend, no network calls. All keys are versioned (`chronostadia.icons.v1`, etc.) with migration logic that recovers missing `builtin` fields from `INITIAL_ICONS` on load.
+**Armazenamento:** somente `localStorage`. Sem backend, sem chamadas de rede. Todas as chaves são versionadas (`chronostadia.icons.v1`, etc.) com lógica de migração que recupera campos `builtin` ausentes a partir de `INITIAL_ICONS` no carregamento.
 
 ---
 
-## Key Design Decisions
+## Decisões Técnicas
 
-**All state in `App.tsx`.** `openWindows`, `icons`, calendar data, expense data — everything flows down as props. No global store. The app is small enough that prop-drilling is simpler and more traceable than introducing a context or a store.
+**Todo o estado em `App.tsx`.** `openWindows`, `icons`, dados do calendário, dados de despesas — tudo desce como props. Sem store global. O app é pequeno o suficiente para que prop-drilling seja mais simples e rastreável do que introduzir um contexto ou store.
 
-**Widgets are siblings of Desktop, not children.** `TimerWidget`, `UpcomingWidget`, and `SpendingWidget` sit alongside `<Desktop>` inside the OS shell div. Right-click events from widgets bubble to the shell — not to `Desktop`. The empty-desktop creation menu is attached to the `os-shell`'s `onContextMenu` handler so right-clicking on any surface (widget or desktop) shows it, while icon right-clicks stop propagation.
+**Widgets são irmãos do Desktop, não filhos.** `TimerWidget`, `UpcomingWidget` e `SpendingWidget` ficam ao lado de `<Desktop>` dentro da div do OS shell. Eventos de botão direito de widgets sobem para o shell — não para o `Desktop`. O menu de criação da área de trabalho vazia está no `onContextMenu` do `os-shell`, então botão direito em qualquer superfície (widget ou desktop) o exibe, enquanto cliques em ícones param a propagação.
 
-**Icon grid collision resolution.** `resolveCollisions()` processes icons in array order (lower index = priority) and assigns each one the first free cell by walking down the column and then to the right. `findFreeCell()` is called on creation so new icons always land in the first visible, unoccupied slot — no off-screen placement.
+**Resolução de colisão da grade de ícones.** `resolveCollisions()` processa ícones em ordem de array (índice menor = prioridade) e atribui a cada um a primeira célula livre descendo a coluna e depois indo para a direita. `findFreeCell()` é chamada na criação para que novos ícones sempre pousem no primeiro slot visível e desocupado — sem posicionamento fora da tela.
 
-**Drag bounds enforced at the hook level.** `useDraggable` accepts a `bounds` option. `DesktopIcon` computes `maxX` and `maxY` from the live window dimensions on each render and passes them in. A `ref` inside the hook holds the current bounds so the `mousemove` handler always reads the latest value without needing to re-subscribe.
+**Limites de arrasto aplicados no nível do hook.** `useDraggable` aceita uma opção `bounds`. `DesktopIcon` calcula `maxX` e `maxY` a partir das dimensões da janela em cada render e os passa. Um `ref` dentro do hook mantém os limites atuais para que o handler de `mousemove` sempre leia o valor mais recente sem precisar se reinscever.
 
-**Widget layout is height-budget math.** At render time, `App.tsx` sums the estimated heights of all visible right-column widgets (Timer, Upcoming, Note, Spending). If the total exceeds the available vertical space, Timer and Upcoming shift left by `264px` (the width of the right column + gap + margin) instead of stacking over each other.
+**Layout de widgets é matemática de orçamento de altura.** Em tempo de render, `App.tsx` soma as alturas estimadas de todos os widgets da coluna direita visíveis (Timer, Próximos, Notas, Gastos). Se o total excede o espaço vertical disponível, Timer e Próximos deslocam para a esquerda em `264px` em vez de se sobreporem.
 
-**`position: fixed` for context menus.** Context menus use `position: fixed` so viewport coordinates work correctly regardless of any ancestor's `overflow: hidden`, which the desktop div uses to clip icons at the taskbar boundary.
+**`position: fixed` para menus de contexto.** Menus de contexto usam `position: fixed` para que as coordenadas do viewport funcionem corretamente independente do `overflow: hidden` de qualquer ancestral, que a div do desktop usa para cortar ícones na borda da barra de tarefas.
 
 ---
 
-## Tech Stack
+## Stack
 
-| Layer | Choice |
+| Camada | Escolha |
 | --- | --- |
 | Runtime | Electron 42 |
-| UI framework | React 19 |
-| Language | TypeScript 6 |
+| UI | React 19 |
+| Linguagem | TypeScript 6 |
 | Bundler | electron-vite (Vite 7) |
-| Styles | 98.css + custom CSS |
-| Storage | localStorage |
-| Packaging | electron-builder (NSIS + portable) |
+| Estilos | 98.css + CSS customizado |
+| Armazenamento | localStorage |
+| Empacotamento | electron-builder (NSIS + portable) |
 
 ---
 
-## Running Locally
+## Rodando Localmente
 
 ```bash
 npm install
-npm run dev          # Electron + hot-reload renderer
-npm run typecheck    # TypeScript check (no emit)
-npm run build:win    # Windows installer (.exe) → release/
+npm run dev          # Electron + hot-reload do renderer
+npm run typecheck    # Verificação TypeScript (sem emit)
+npm run build:win    # Instalador Windows (.exe) → release/
 ```
 
-> If `ELECTRON_RUN_AS_NODE` is set in your shell environment, unset it before running `npm run dev`. When set, Electron skips the app bootstrap and the process exits immediately with `app undefined`.
+> Se `ELECTRON_RUN_AS_NODE` estiver definido no seu ambiente de shell, remova-o antes de rodar `npm run dev`. Quando definido, o Electron pula o bootstrap do app e o processo encerra imediatamente com `app undefined`.
 
 ---
 
-## Credits
+## Créditos
 
-Pixel art icons by [Justin Arnold](https://zeromatrix.itch.io/rpgiab-icons) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Ícones pixel art por [Justin Arnold](https://zeromatrix.itch.io/rpgiab-icons) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-Win98 CSS by [jdan/98.css](https://github.com/jdan/98.css) — MIT
+CSS Win98 por [jdan/98.css](https://github.com/jdan/98.css) — MIT
