@@ -1,3 +1,6 @@
+<img width="3192" height="1239" alt="CHronostadia banner" src="https://github.com/user-attachments/assets/129bd7ef-8c21-4ae9-88c9-3b7ffc3fbc01" />
+
+
 # ChronoStadia
 
 > Um desktop de produtividade independente com visual e comportamento de Windows 98.
